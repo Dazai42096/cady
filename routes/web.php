@@ -12,6 +12,7 @@ use App\Http\Controllers\Dashboard\GeneratorController;
 use App\Http\Controllers\Dashboard\QuotationController;
 use App\Http\Controllers\Dashboard\ContractController;
 use App\Http\Controllers\Dashboard\VisitController;
+use App\Http\Controllers\Dashboard\RentalController;
 use App\Http\Controllers\Dashboard\AuditLogController;
 use App\Http\Controllers\Portal\PortalController;
 
@@ -91,7 +92,8 @@ Route::middleware(['auth', 'active.user'])->group(function () {
             Route::get('/generators/{generator}/edit', [GeneratorController::class, 'edit'])->name('generators.edit')->middleware('role:admin,sales');
             Route::put('/generators/{generator}', [GeneratorController::class, 'update'])->name('generators.update')->middleware('role:admin,sales');
             Route::delete('/generators/{generator}', [GeneratorController::class, 'destroy'])->name('generators.destroy')->middleware('role:admin,sales');
-
+            // Rental Control (Admin/Sales view and manage rental offers)
+            Route::get('/rentals', [RentalController::class, 'index'])->name('rentals.index')->middleware('role:admin,sales');
             // Quotations CRUD (Admin/Sales manage, Support cannot view/manage)
             Route::middleware('role:admin,sales')->group(function () {
                 Route::get('/quotations', [QuotationController::class, 'index'])->name('quotations.index');

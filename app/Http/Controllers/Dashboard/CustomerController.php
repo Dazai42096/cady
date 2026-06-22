@@ -76,7 +76,7 @@ class CustomerController extends Controller
 
         return redirect()
             ->route('dashboard.customers.show', $customer)
-            ->with('success', 'ØªÙ… Ø¥Ù†Ø´Ø§Ø¡ Ø§Ù„Ø¹Ù…ÙŠÙ„ Ø¨Ù†Ø¬Ø§Ø­ ÙˆÙ‡Ùˆ ÙÙŠ Ø§Ù†ØªØ¸Ø§Ø± Ù…ÙˆØ§ÙÙ‚Ø© Ø§Ù„Ø¥Ø¯Ø§Ø±Ø©.');
+            ->with('success', 'Ã˜ÂªÃ™â€¦ Ã˜Â¥Ã™â€ Ã˜Â´Ã˜Â§Ã˜Â¡ Ã˜Â§Ã™â€žÃ˜Â¹Ã™â€¦Ã™Å Ã™â€ž Ã˜Â¨Ã™â€ Ã˜Â¬Ã˜Â§Ã˜Â­ Ã™Ë†Ã™â€¡Ã™Ë† Ã™ÂÃ™Å  Ã˜Â§Ã™â€ Ã˜ÂªÃ˜Â¸Ã˜Â§Ã˜Â± Ã™â€¦Ã™Ë†Ã˜Â§Ã™ÂÃ™â€šÃ˜Â© Ã˜Â§Ã™â€žÃ˜Â¥Ã˜Â¯Ã˜Â§Ã˜Â±Ã˜Â©.');
     }
 
     /**
@@ -137,7 +137,7 @@ class CustomerController extends Controller
 
         return redirect()
             ->route('dashboard.customers.show', $customer)
-            ->with('success', 'ØªÙ… ØªØ­Ø¯ÙŠØ« Ø¨ÙŠØ§Ù†Ø§Øª Ø§Ù„Ø¹Ù…ÙŠÙ„ Ø¨Ù†Ø¬Ø§Ø­.');
+            ->with('success', 'Ã˜ÂªÃ™â€¦ Ã˜ÂªÃ˜Â­Ã˜Â¯Ã™Å Ã˜Â« Ã˜Â¨Ã™Å Ã˜Â§Ã™â€ Ã˜Â§Ã˜Âª Ã˜Â§Ã™â€žÃ˜Â¹Ã™â€¦Ã™Å Ã™â€ž Ã˜Â¨Ã™â€ Ã˜Â¬Ã˜Â§Ã˜Â­.');
     }
 
     /**
@@ -160,7 +160,7 @@ class CustomerController extends Controller
 
         return redirect()
             ->route('dashboard.customers.index')
-            ->with('success', 'ØªÙ… Ø­Ø°Ù Ø§Ù„Ø¹Ù…ÙŠÙ„ Ø¨Ù†Ø¬Ø§Ø­.');
+            ->with('success', 'Ã˜ÂªÃ™â€¦ Ã˜Â­Ã˜Â°Ã™Â Ã˜Â§Ã™â€žÃ˜Â¹Ã™â€¦Ã™Å Ã™â€ž Ã˜Â¨Ã™â€ Ã˜Â¬Ã˜Â§Ã˜Â­.');
     }
 
     /**
@@ -186,7 +186,8 @@ class CustomerController extends Controller
 
         DB::transaction(function () use ($customer) {
             $oldStatus = $customer->status;
-            $customer->update(['status' => CustomerStatus::ACTIVE]);
+            $customer$customer->update(['status' => CustomerStatus::ACTIVE]);
+            $customer->users()->update(['is_active' => true]);
 
             $this->auditLogService->log(
                 action: 'customer_approved',
@@ -199,7 +200,7 @@ class CustomerController extends Controller
 
         return redirect()
             ->route('dashboard.customers.pending')
-            ->with('success', 'ØªÙ… ØªÙØ¹ÙŠÙ„ Ø§Ù„Ø¹Ù…ÙŠÙ„ Ø¨Ù†Ø¬Ø§Ø­.');
+            ->with('success', 'Ã˜ÂªÃ™â€¦ Ã˜ÂªÃ™ÂÃ˜Â¹Ã™Å Ã™â€ž Ã˜Â§Ã™â€žÃ˜Â¹Ã™â€¦Ã™Å Ã™â€ž Ã˜Â¨Ã™â€ Ã˜Â¬Ã˜Â§Ã˜Â­.');
     }
 
     /**
@@ -211,7 +212,8 @@ class CustomerController extends Controller
 
         DB::transaction(function () use ($customer) {
             $oldStatus = $customer->status;
-            $customer->update(['status' => CustomerStatus::INACTIVE]);
+            $customer$customer->update(['status' => CustomerStatus::INACTIVE]);
+            $customer->users()->update(['is_active' => false]);
 
             $this->auditLogService->log(
                 action: 'customer_rejected',
@@ -224,7 +226,7 @@ class CustomerController extends Controller
 
         return redirect()
             ->route('dashboard.customers.pending')
-            ->with('success', 'ØªÙ… Ø±ÙØ¶ Ø·Ù„Ø¨ Ø§Ù„Ø¹Ù…ÙŠÙ„.');
+            ->with('success', 'Ã˜ÂªÃ™â€¦ Ã˜Â±Ã™ÂÃ˜Â¶ Ã˜Â·Ã™â€žÃ˜Â¨ Ã˜Â§Ã™â€žÃ˜Â¹Ã™â€¦Ã™Å Ã™â€ž.');
     }
 
     /**
@@ -236,7 +238,8 @@ class CustomerController extends Controller
 
         DB::transaction(function () use ($customer) {
             $oldStatus = $customer->status;
-            $customer->update(['status' => CustomerStatus::SUSPENDED]);
+            $customer$customer->update(['status' => CustomerStatus::SUSPENDED]);
+            $customer->users()->update(['is_active' => false]);
 
             $this->auditLogService->log(
                 action: 'customer_suspended',
@@ -249,7 +252,7 @@ class CustomerController extends Controller
 
         return redirect()
             ->route('dashboard.customers.show', $customer)
-            ->with('success', 'ØªÙ… Ø¥ÙŠÙ‚Ø§Ù Ø§Ù„Ø¹Ù…ÙŠÙ„ Ù…Ø¤Ù‚ØªØ§Ù‹.');
+            ->with('success', 'Ã˜ÂªÃ™â€¦ Ã˜Â¥Ã™Å Ã™â€šÃ˜Â§Ã™Â Ã˜Â§Ã™â€žÃ˜Â¹Ã™â€¦Ã™Å Ã™â€ž Ã™â€¦Ã˜Â¤Ã™â€šÃ˜ÂªÃ˜Â§Ã™â€¹.');
     }
 }
 
