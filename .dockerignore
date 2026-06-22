@@ -1,0 +1,14 @@
+﻿.env
+.env.*
+node_modules
+vendor
+.git
+.gitignore
+storage/logs/*
+storage/framework/cache/*
+storage/framework/sessions/*
+storage/framework/views/*
+database/database.sqlite
+composer.phar
+npm-debug.log
+.DS_Store
