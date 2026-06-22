@@ -1,4 +1,4 @@
-﻿Listen ${PORT}
+Listen ${PORT}
 
 <VirtualHost *:${PORT}>
     ServerName localhost
