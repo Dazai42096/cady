@@ -9,13 +9,16 @@ mkdir -p storage/framework/cache storage/framework/sessions storage/framework/vi
 chown -R www-data:www-data storage bootstrap/cache
 chmod -R ug+rwx storage bootstrap/cache
 
-echo "Clearing old cache..."
+echo "Clearing old Laravel cache..."
 php artisan optimize:clear || true
 
-echo "Running migrations..."
+echo "Running database migrations..."
 php artisan migrate --force
 
-echo "Caching Laravel..."
+echo "Creating production admin if env variables exist..."
+php artisan db:seed --class=ProductionAdminSeeder --force || true
+
+echo "Caching Laravel for production..."
 php artisan config:cache
 php artisan route:cache
 php artisan view:cache

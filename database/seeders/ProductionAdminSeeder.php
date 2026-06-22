@@ -15,7 +15,7 @@ class ProductionAdminSeeder extends Seeder
         $password = env('ADMIN_PASSWORD');
 
         if (!$email || !$password) {
-            throw new \RuntimeException('ADMIN_EMAIL and ADMIN_PASSWORD must be set before running ProductionAdminSeeder.');
+            return;
         }
 
         User::updateOrCreate(
