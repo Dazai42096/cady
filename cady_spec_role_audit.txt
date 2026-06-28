@@ -1,0 +1,134 @@
+﻿CADY EST PLATFORM - SPEC + ROLE AUDIT
+Generated: 06/29/2026 00:00:24
+============================================================
+
+1) MODULE CHECKS
+------------------------------------------------------------
+[OK] Public Website: /, /about, /services, /contact, /quote-request 
+[OK] Authentication: login, register, forgot/reset password, logout 
+[OK] Customers module 
+[OK] Pending customer approvals 
+[OK] Generator registry 
+[OK] Quotations module 
+[OK] Quotation items / quantity 
+[OK] Quotation PDF 
+[OK] Maintenance contracts 
+[OK] Rental control 
+[OK] Maintenance visits / service visits 
+[OK] Customer portal 
+[OK] Management dashboard 
+[OK] Audit logs 
+[OK] WhatsApp integration 
+[OK] PDF generation exists 
+
+2) SPEC TECHNOLOGY CHECKS
+------------------------------------------------------------
+[MISSING / REVIEW] Supabase Auth present Master spec says Supabase Auth.
+[OK] Postgres RLS policies present Role matrix says RLS + app code.
+[MISSING / REVIEW] 2FA / TOTP present 
+[MISSING / REVIEW] Puppeteer PDF engine present Current app may use DomPDF instead.
+[MISSING / REVIEW] Backup logic documented/implemented 
+[MISSING / REVIEW] WhatsApp messages table/API present 
+
+3) ROLE PERMISSION CHECKS
+------------------------------------------------------------
+[OK] Role middleware exists 
+[OK] Admin role checks exist 
+[OK] Sales access exists 
+[OK] Support access exists 
+[OK] Customer role / portal isolation exists 
+[OK] Policies exist 
+[OK] Admin-only audit log route 
+[OK] Admin/Sales quotation permissions 
+[OK] Customer portal routes separated from dashboard 
+
+4) FINAL FEEDBACK REGRESSION CHECKS
+------------------------------------------------------------
+[OK] No corrupted Arabic in Blade files 
+[OK] Quotation PDF does not use Saudi Riyal or fixed 15% 
+[OK] JOD exists in quotation files 
+[OK] Tax 16 / 8 / 0 exists 
+[OK] Pending customers route exists 
+[OK] Rental route exists 
+
+5) ROUTES SNAPSHOT
+------------------------------------------------------------
+
+  GET|HEAD  / .................................................................... home ΓÇ║ Public\PublicController@home
+  GET|HEAD  about .............................................................. about ΓÇ║ Public\PublicController@about
+  GET|HEAD  contact ........................................................ contact ΓÇ║ Public\PublicController@contact
+  GET|HEAD  dashboard .......................................... dashboard.index ΓÇ║ Dashboard\DashboardController@index
+  GET|HEAD  dashboard/audit-logs ..................... dashboard.audit_logs.index ΓÇ║ Dashboard\AuditLogController@index
+  GET|HEAD  dashboard/contracts ....................... dashboard.contracts.index ΓÇ║ Dashboard\ContractController@index
+  POST      dashboard/contracts ....................... dashboard.contracts.store ΓÇ║ Dashboard\ContractController@store
+  GET|HEAD  dashboard/contracts/create .............. dashboard.contracts.create ΓÇ║ Dashboard\ContractController@create
+  DELETE    dashboard/contracts/{contract} ........ dashboard.contracts.destroy ΓÇ║ Dashboard\ContractController@destroy
+  GET|HEAD  dashboard/contracts/{contract} .............. dashboard.contracts.show ΓÇ║ Dashboard\ContractController@show
+  PUT       dashboard/contracts/{contract} .......... dashboard.contracts.update ΓÇ║ Dashboard\ContractController@update
+  POST      dashboard/contracts/{contract}/activate dashboard.contracts.activate ΓÇ║ Dashboard\ContractController@activΓÇª
+  GET|HEAD  dashboard/contracts/{contract}/edit ......... dashboard.contracts.edit ΓÇ║ Dashboard\ContractController@edit
+  GET|HEAD  dashboard/contracts/{contract}/pdf .... dashboard.contracts.pdf ΓÇ║ Dashboard\ContractController@downloadPdf
+  POST      dashboard/contracts/{contract}/terminate dashboard.contracts.terminate ΓÇ║ Dashboard\ContractController@terΓÇª
+  GET|HEAD  dashboard/customers ....................... dashboard.customers.index ΓÇ║ Dashboard\CustomerController@index
+  POST      dashboard/customers ....................... dashboard.customers.store ΓÇ║ Dashboard\CustomerController@store
+  GET|HEAD  dashboard/customers-pending ........... dashboard.customers.pending ΓÇ║ Dashboard\CustomerController@pending
+  GET|HEAD  dashboard/customers/create .............. dashboard.customers.create ΓÇ║ Dashboard\CustomerController@create
+  DELETE    dashboard/customers/{customer} ........ dashboard.customers.destroy ΓÇ║ Dashboard\CustomerController@destroy
+  GET|HEAD  dashboard/customers/{customer} .............. dashboard.customers.show ΓÇ║ Dashboard\CustomerController@show
+  PUT       dashboard/customers/{customer} .......... dashboard.customers.update ΓÇ║ Dashboard\CustomerController@update
+  POST      dashboard/customers/{customer}/approve dashboard.customers.approve ΓÇ║ Dashboard\CustomerController@approve
+  GET|HEAD  dashboard/customers/{customer}/edit ......... dashboard.customers.edit ΓÇ║ Dashboard\CustomerController@edit
+  POST      dashboard/customers/{customer}/reject ... dashboard.customers.reject ΓÇ║ Dashboard\CustomerController@reject
+  POST      dashboard/customers/{customer}/suspend dashboard.customers.suspend ΓÇ║ Dashboard\CustomerController@suspend
+  GET|HEAD  dashboard/generators .................... dashboard.generators.index ΓÇ║ Dashboard\GeneratorController@index
+  POST      dashboard/generators .................... dashboard.generators.store ΓÇ║ Dashboard\GeneratorController@store
+  GET|HEAD  dashboard/generators/create ........... dashboard.generators.create ΓÇ║ Dashboard\GeneratorController@create
+  DELETE    dashboard/generators/{generator} .... dashboard.generators.destroy ΓÇ║ Dashboard\GeneratorController@destroy
+  GET|HEAD  dashboard/generators/{generator} .......... dashboard.generators.show ΓÇ║ Dashboard\GeneratorController@show
+  PUT       dashboard/generators/{generator} ...... dashboard.generators.update ΓÇ║ Dashboard\GeneratorController@update
+  GET|HEAD  dashboard/generators/{generator}/edit ..... dashboard.generators.edit ΓÇ║ Dashboard\GeneratorController@edit
+  GET|HEAD  dashboard/quotations .................... dashboard.quotations.index ΓÇ║ Dashboard\QuotationController@index
+  POST      dashboard/quotations .................... dashboard.quotations.store ΓÇ║ Dashboard\QuotationController@store
+  GET|HEAD  dashboard/quotations/create ........... dashboard.quotations.create ΓÇ║ Dashboard\QuotationController@create
+  DELETE    dashboard/quotations/{quotation} .... dashboard.quotations.destroy ΓÇ║ Dashboard\QuotationController@destroy
+  GET|HEAD  dashboard/quotations/{quotation} .......... dashboard.quotations.show ΓÇ║ Dashboard\QuotationController@show
+  PUT       dashboard/quotations/{quotation} ...... dashboard.quotations.update ΓÇ║ Dashboard\QuotationController@update
+  POST      dashboard/quotations/{quotation}/accept dashboard.quotations.accept ΓÇ║ Dashboard\QuotationController@accept
+  GET|HEAD  dashboard/quotations/{quotation}/edit ..... dashboard.quotations.edit ΓÇ║ Dashboard\QuotationController@edit
+  POST      dashboard/quotations/{quotation}/mark-sent dashboard.quotations.mark_sent ΓÇ║ Dashboard\QuotationControllerΓÇª
+  GET|HEAD  dashboard/quotations/{quotation}/pdf dashboard.quotations.pdf ΓÇ║ Dashboard\QuotationController@downloadPdf
+  POST      dashboard/quotations/{quotation}/reject dashboard.quotations.reject ΓÇ║ Dashboard\QuotationController@reject
+  GET|HEAD  dashboard/quote-requests .... dashboard.quote_requests.index ΓÇ║ Dashboard\DashboardController@quoteRequests
+  POST      dashboard/quote-requests/{quoteRequest}/process dashboard.quote_requests.process ΓÇ║ Dashboard\DashboardConΓÇª
+  GET|HEAD  dashboard/rentals ............................. dashboard.rentals.index ΓÇ║ Dashboard\RentalController@index
+  GET|HEAD  dashboard/visits ................................ dashboard.visits.index ΓÇ║ Dashboard\VisitController@index
+  GET|HEAD  dashboard/visits/{visit} .......................... dashboard.visits.show ΓÇ║ Dashboard\VisitController@show
+  PUT       dashboard/visits/{visit} ...................... dashboard.visits.update ΓÇ║ Dashboard\VisitController@update
+  POST      dashboard/visits/{visit}/cancel ............... dashboard.visits.cancel ΓÇ║ Dashboard\VisitController@cancel
+  POST      dashboard/visits/{visit}/complete ......... dashboard.visits.complete ΓÇ║ Dashboard\VisitController@complete
+  POST      dashboard/visits/{visit}/confirm ............ dashboard.visits.confirm ΓÇ║ Dashboard\VisitController@confirm
+  GET|HEAD  dashboard/visits/{visit}/edit ..................... dashboard.visits.edit ΓÇ║ Dashboard\VisitController@edit
+  POST      dashboard/visits/{visit}/start .................. dashboard.visits.start ΓÇ║ Dashboard\VisitController@start
+  GET|HEAD  forgot-password ..................... password.request ΓÇ║ Auth\ForgotPasswordController@showLinkRequestForm
+  POST      forgot-password ........................ password.email ΓÇ║ Auth\ForgotPasswordController@sendResetLinkEmail
+  GET|HEAD  login ......................................................... login ΓÇ║ Auth\LoginController@showLoginForm
+  POST      login ......................................................................... Auth\LoginController@login
+  POST      logout .............................................................. logout ΓÇ║ Auth\LoginController@logout
+  GET|HEAD  portal ...................................................... portal.index ΓÇ║ Portal\PortalController@index
+  GET|HEAD  portal/contracts .................................... portal.contracts ΓÇ║ Portal\PortalController@contracts
+  GET|HEAD  portal/contracts/{contract}/pdf ....... portal.contracts.pdf ΓÇ║ Portal\PortalController@downloadContractPdf
+  GET|HEAD  portal/quotations ................................. portal.quotations ΓÇ║ Portal\PortalController@quotations
+  GET|HEAD  portal/quotations/{quotation}/pdf ... portal.quotations.pdf ΓÇ║ Portal\PortalController@downloadQuotationPdf
+  GET|HEAD  quote-request .......................... quote_request.form ΓÇ║ Public\PublicController@showQuoteRequestForm
+  POST      quote-request .......................... quote_request.submit ΓÇ║ Public\PublicController@submitQuoteRequest
+  GET|HEAD  register ......................................... register ΓÇ║ Auth\RegisterController@showRegistrationForm
+  POST      register ................................................................ Auth\RegisterController@register
+  POST      reset-password ...................................... password.update ΓÇ║ Auth\ResetPasswordController@reset
+  GET|HEAD  reset-password/{token} ....................... password.reset ΓÇ║ Auth\ResetPasswordController@showResetForm
+  GET|HEAD  services ..................................................... services ΓÇ║ Public\PublicController@services
+  GET|HEAD  storage/{path} storage.local ΓÇ║ vendor/laravel/framework/src/Illuminate/Filesystem/FilesystemServiceProvidΓÇª
+  PUT       storage/{path} storage.local.upload ΓÇ║ vendor/laravel/framework/src/Illuminate/Filesystem/FilesystemServicΓÇª
+  GET|HEAD  up ........... vendor/laravel/framework/src/Illuminate/Foundation/Configuration/ApplicationBuilder.php:224
+
+                                                                                                   Showing [75] routes
+
