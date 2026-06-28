@@ -188,9 +188,9 @@
                 <tr>
                     <td>{{ $index + 1 }}</td>
                     <td style="text-align: right;">{{ $item->description }}</td>
-                    <td>{{ number_format($item->unit_price, 2) }} ر.س</td>
+                    <td>{{ number_format($item->unit_price, 2) }} JOD</td>
                     <td>{{ $item->quantity }}</td>
-                    <td>{{ number_format($item->total_price, 2) }} ر.s</td>
+                    <td>{{ number_format($item->total ?? $item->total_price ?? 0, 2) }} ر.s</td>
                 </tr>
             @endforeach
         </tbody>
@@ -204,15 +204,15 @@
             <table class="summary-table" style="width: 100%;">
                 <tr>
                     <td>المبلغ الخاضع للضريبة</td>
-                    <td style="text-align: left; font-weight: bold;">{{ number_format($quotation->subtotal, 2) }} ر.س</td>
+                    <td style="text-align: left; font-weight: bold;">{{ number_format($quotation->subtotal, 2) }} JOD</td>
                 </tr>
                 <tr>
-                    <td>ضريبة القيمة المضافة (15%)</td>
-                    <td style="text-align: left; font-weight: bold;">{{ number_format($quotation->vat_amount, 2) }} ر.س</td>
+                    <td>ضريبة القيمة المضافة ({{ $quotation->tax_rate ?? 16 }}%)</td>
+                    <td style="text-align: left; font-weight: bold;">{{ number_format($quotation->tax_amount ?? $quotation->vat_amount ?? 0, 2) }} JOD</td>
                 </tr>
                 <tr class="total-row">
                     <td>الإجمالي الشامل للضريبة</td>
-                    <td style="text-align: left; font-weight: bold;">{{ number_format($quotation->total_amount, 2) }} ر.س</td>
+                    <td style="text-align: left; font-weight: bold;">{{ number_format($quotation->total ?? $quotation->total_amount ?? 0, 2) }} JOD</td>
                 </tr>
             </table>
         </div>
@@ -223,7 +223,7 @@
         <div class="terms-title">الشروط والأحكام:</div>
         <ul style="padding-right: 15px; margin: 0; font-size: 9px; color: #555;">
             <li>هذا العرض خاضع لشروط التوريد والتركيب القياسية لمؤسسة كادي.</li>
-            <li>الأسعار تشمل ضريبة القيمة المضافة بنسبة 15%.</li>
+            <li>الأسعار حسب الضريبة المحددة في عرض السعر.</li>
             <li>طريقة الدفع: حسب الاتفاق المعتمد في أمر الشراء.</li>
         </ul>
     </div>

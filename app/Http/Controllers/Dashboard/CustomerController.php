@@ -186,7 +186,7 @@ class CustomerController extends Controller
 
         DB::transaction(function () use ($customer) {
             $oldStatus = $customer->status;
-            $customer$customer->update(['status' => CustomerStatus::ACTIVE]);
+            $customer->update(['status' => CustomerStatus::ACTIVE]);
             $customer->users()->update(['is_active' => true]);
 
             $this->auditLogService->log(
@@ -212,7 +212,7 @@ class CustomerController extends Controller
 
         DB::transaction(function () use ($customer) {
             $oldStatus = $customer->status;
-            $customer$customer->update(['status' => CustomerStatus::INACTIVE]);
+            $customer->update(['status' => CustomerStatus::INACTIVE]);
             $customer->users()->update(['is_active' => false]);
 
             $this->auditLogService->log(
@@ -238,7 +238,7 @@ class CustomerController extends Controller
 
         DB::transaction(function () use ($customer) {
             $oldStatus = $customer->status;
-            $customer$customer->update(['status' => CustomerStatus::SUSPENDED]);
+            $customer->update(['status' => CustomerStatus::SUSPENDED]);
             $customer->users()->update(['is_active' => false]);
 
             $this->auditLogService->log(

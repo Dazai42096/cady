@@ -50,7 +50,7 @@ class CustomerPolicy
     /**
      * Determine whether the user can approve the customer.
      */
-    public function approve(User $user, Customer $customer): bool
+    public function approve(User $user, ?Customer $customer = null): bool
     {
         return $user->isAdmin();
     }
