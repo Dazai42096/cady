@@ -10,18 +10,34 @@ class RoleMiddleware
 {
     /**
      * Handle an incoming request.
+     *
+     * Example usage:
+     * role:admin
+     * role:admin,sales
+     * role:admin,sales,support
      */
-    public function handle(Request $request, Closure $next, ...$roles): Response
+    public function handle(Request $request, Closure $next, string ...$roles): Response
     {
-        if (!$request->user()) {
-            return redirect()->route('login');
+        $user = $request->user();
+
+        if (!$user) {
+            abort(401, 'You must be logged in.');
         }
 
-        // Convert enums or strings to string comparison
-        $userRole = $request->user()->role->value ?? $request->user()->role;
-        
-        if (!in_array($userRole, $roles)) {
-            abort(403, 'غير مصرح لك بالدخول إلى هذه الصفحة.');
+        if (!$user->is_active) {
+            auth()->logout();
+
+            abort(403, 'Your account is inactive.');
+        }
+
+        if ($user->locked_until && now()->lessThan($user->locked_until)) {
+            auth()->logout();
+
+            abort(403, 'Your account is temporarily locked.');
+        }
+
+        if (!in_array($user->role, $roles, true)) {
+            abort(403, 'You do not have permission to access this page.');
         }
 
         return $next($request);

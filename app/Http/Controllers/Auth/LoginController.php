@@ -3,117 +3,89 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Auth\LoginRequest;
-use App\Models\User;
-use App\Services\AuditLogService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\ValidationException;
 
 class LoginController extends Controller
 {
-    protected $auditLogService;
-
-    public function __construct(AuditLogService $auditLogService)
-    {
-        $this->auditLogService = $auditLogService;
-    }
-
     /**
-     * Show the login form.
+     * Show login page.
      */
     public function showLoginForm()
     {
-        if (Auth::check()) {
-            return $this->redirectUser(Auth::user());
-        }
         return view('auth.login');
     }
 
     /**
-     * Handle authentication attempt.
+     * Handle login request.
      */
-    public function login(LoginRequest $request)
+    public function login(Request $request)
     {
-        $user = User::where('email', $request->email)->first();
+        $credentials = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required', 'string'],
+        ]);
 
-        // 1. Verify credentials
-        if (!$user || !Hash::check($request->password, $user->password)) {
-            // Log failed login
-            $this->auditLogService->log(
-                action: 'auth.login_failed',
-                metadata: ['email' => $request->email, 'reason' => 'invalid_credentials']
-            );
+        $remember = $request->boolean('remember');
 
-            return back()->withInput($request->only('email'))->withErrors([
-                'email' => 'البريد الإلكتروني أو كلمة المرور غير صحيحة.',
+        if (!Auth::attempt($credentials, $remember)) {
+            throw ValidationException::withMessages([
+                'email' => 'The provided email or password is incorrect.',
             ]);
         }
 
-        // 2. Verify active status
-        if (!$user->is_active) {
-            // Log inactive login attempt
-            $this->auditLogService->log(
-                action: 'auth.login_failed',
-                user_id: $user->id,
-                metadata: ['email' => $request->email, 'reason' => 'account_inactive']
-            );
-
-            return back()->withInput($request->only('email'))->withErrors([
-                'email' => 'هذا الحساب غير نشط حالياً أو بانتظار موافقة الإدارة. يرجى التواصل مع الدعم الفني.',
-            ]);
-        }
-
-        // 3. Login user
-        Auth::login($user, $request->boolean('remember'));
         $request->session()->regenerate();
 
-        // Log successful login
-        $this->auditLogService->log(
-            action: 'auth.login_success',
-            metadata: ['user_id' => $user->id, 'email' => $user->email]
-        );
+        $user = Auth::user();
 
-        return $this->redirectUser($user);
+        if (!$user->is_active) {
+            Auth::logout();
+
+            $request->session()->invalidate();
+            $request->session()->regenerateToken();
+
+            throw ValidationException::withMessages([
+                'email' => 'Your account is inactive. Please contact the administrator.',
+            ]);
+        }
+
+        if ($user->locked_until && now()->lessThan($user->locked_until)) {
+            Auth::logout();
+
+            $request->session()->invalidate();
+            $request->session()->regenerateToken();
+
+            throw ValidationException::withMessages([
+                'email' => 'Your account is temporarily locked. Please try again later.',
+            ]);
+        }
+
+        return redirect()->route($this->redirectRouteForRole($user->role));
     }
 
     /**
-     * Log out the user.
+     * Logout user.
      */
     public function logout(Request $request)
     {
-        if (Auth::check()) {
-            $user = Auth::user();
-            
-            // Log logout event
-            $this->auditLogService->log(
-                action: 'auth.logout',
-                metadata: ['user_id' => $user->id, 'email' => $user->email]
-            );
-
-            Auth::logout();
-        }
+        Auth::logout();
 
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect()->route('login')->with('success', 'تم تسجيل الخروج بنجاح.');
+        return redirect()->route('login');
     }
 
     /**
-     * Helper to redirect user by role.
+     * Decide where each role goes after login.
      */
-    protected function redirectUser(User $user)
+    private function redirectRouteForRole(?string $role): string
     {
-        if ($user->isStaff()) {
-            return redirect()->intended('/dashboard');
-        }
-
-        if ($user->isCustomer()) {
-            return redirect()->intended('/portal');
-        }
-
-        Auth::logout();
-        return redirect()->route('login')->withErrors(['email' => 'دور المستخدم غير معرف في النظام.']);
+        return match ($role) {
+            'admin', 'sales', 'support' => 'dashboard.index',
+            'customer' => 'portal.index',
+            default => 'login',
+        };
     }
 }
