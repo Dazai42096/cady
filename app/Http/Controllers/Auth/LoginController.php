@@ -90,6 +90,17 @@ class LoginController extends Controller
 
         $this->logAuthEvent($request, 'auth.login_success', $user);
 
+        if ($user->hasTwoFactorEnabled()) {
+            session([
+                'two_factor_user_id' => $user->id,
+                'two_factor_remember' => $remember,
+            ]);
+
+            Auth::logout();
+
+            return redirect()->route('two-factor.challenge');
+        }
+
         return redirect()->route($this->redirectRouteForRole($user->role));
     }
 

@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\Dashboard\SecurityUserController;
+
+use App\Http\Controllers\Auth\TwoFactorController;
+
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Auth\ForgotPasswordController;
@@ -253,3 +257,22 @@ Route::middleware(['auth', 'role:customer'])
         Route::get('/quotations', [PortalController::class, 'quotations'])->name('quotations');
         Route::get('/quotations/{quotation}/pdf', [PortalController::class, 'downloadQuotationPdf'])->name('quotations.pdf');
     });
+
+
+Route::get('/two-factor/challenge', [TwoFactorController::class, 'showChallenge'])->name('two-factor.challenge');
+Route::post('/two-factor/challenge', [TwoFactorController::class, 'verifyChallenge'])->name('two-factor.verify');
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/dashboard/two-factor', [TwoFactorController::class, 'setup'])->name('two-factor.setup');
+    Route::post('/dashboard/two-factor/confirm', [TwoFactorController::class, 'confirm'])->name('two-factor.confirm');
+    Route::post('/dashboard/two-factor/disable', [TwoFactorController::class, 'disable'])->name('two-factor.disable');
+});
+
+
+Route::middleware(['auth', 'role:admin'])->prefix('dashboard/security-users')->name('dashboard.security-users.')->group(function () {
+    Route::get('/', [SecurityUserController::class, 'index'])->name('index');
+    Route::post('/{user}/unlock', [SecurityUserController::class, 'unlock'])->name('unlock');
+    Route::post('/{user}/reset-2fa', [SecurityUserController::class, 'resetTwoFactor'])->name('reset-2fa');
+    Route::post('/{user}/activate', [SecurityUserController::class, 'activate'])->name('activate');
+    Route::post('/{user}/deactivate', [SecurityUserController::class, 'deactivate'])->name('deactivate');
+});
