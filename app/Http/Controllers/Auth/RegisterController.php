@@ -78,11 +78,11 @@ class RegisterController extends Controller
                 );
             });
 
-            return redirect()->route('login')->with('success', 'تم إنشاء الحساب بنجاح! حسابك حالياً قيد المراجعة والموافقة من قبل الإدارة وسنتواصل معك قريباً.');
+            return redirect()->route('login')->with('success', 'Account created successfully. Your account is pending admin approval.');
 
         } catch (\Exception $e) {
             return back()->withInput()->withErrors([
-                'email' => 'حدث خطأ أثناء إنشاء الحساب، يرجى المحاولة مرة أخرى لاحقاً.',
+                'email' => 'An error occurred while creating the account. Please try again later.',
             ]);
         }
     }

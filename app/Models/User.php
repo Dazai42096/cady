@@ -11,29 +11,31 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     */
     protected $fillable = [
         'name',
         'email',
+        'phone',
         'password',
         'role',
         'is_active',
         'locked_until',
+        'failed_login_attempts',
+        'failed_login_window_started_at',
+        'last_login_at',
+        'last_login_ip',
+        'two_factor_enabled',
+        'two_factor_secret',
+        'two_factor_recovery_codes',
+        'two_factor_confirmed_at',
     ];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     */
     protected $hidden = [
         'password',
         'remember_token',
+        'two_factor_secret',
+        'two_factor_recovery_codes',
     ];
 
-    /**
-     * Attribute casts.
-     */
     protected function casts(): array
     {
         return [
@@ -41,12 +43,15 @@ class User extends Authenticatable
             'password' => 'hashed',
             'is_active' => 'boolean',
             'locked_until' => 'datetime',
+            'failed_login_attempts' => 'integer',
+            'failed_login_window_started_at' => 'datetime',
+            'last_login_at' => 'datetime',
+            'two_factor_enabled' => 'boolean',
+            'two_factor_recovery_codes' => 'array',
+            'two_factor_confirmed_at' => 'datetime',
         ];
     }
 
-    /**
-     * Role helpers.
-     */
     public function isAdmin(): bool
     {
         return $this->role === 'admin';
@@ -79,18 +84,21 @@ class User extends Authenticatable
         return in_array($this->role, $roles, true);
     }
 
-    /**
-     * Customer-user links.
-     * Used for connecting customer portal users to customer records.
-     */
+    public function isLocked(): bool
+    {
+        return $this->locked_until !== null && now()->lessThan($this->locked_until);
+    }
+
+    public function hasTwoFactorEnabled(): bool
+    {
+        return $this->two_factor_enabled && $this->two_factor_confirmed_at !== null;
+    }
+
     public function customerUsers(): HasMany
     {
         return $this->hasMany(CustomerUser::class);
     }
 
-    /**
-     * Audit logs created by this user.
-     */
     public function auditLogs(): HasMany
     {
         return $this->hasMany(AuditLog::class);

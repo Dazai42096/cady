@@ -113,7 +113,7 @@
                 
                 <!-- Role Badge -->
                 <span class="px-3 py-1 rounded-full text-xs font-bold bg-[#0b192c] text-white">
-                    {{ Auth::user()->role->label() }}
+                    {{ ucfirst((string) Auth::user()->role) }}
                 </span>
 
                 <!-- User Profile Dropdown / Static display -->
