@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Portal\PortalRentalController;
+
 use App\Http\Controllers\Dashboard\SecurityUserController;
 
 use App\Http\Controllers\Auth\TwoFactorController;
@@ -294,3 +296,13 @@ Route::middleware(['auth', 'role:admin,sales,support'])->prefix('dashboard/renta
     Route::post('/{rental}/hour-meter', [RentalController::class, 'updateHourMeter'])->name('hour-meter');
     Route::get('/{rental}/export', [RentalController::class, 'export'])->name('export');
 });
+
+
+Route::middleware(['auth', 'role:customer'])
+    ->prefix('portal/rentals')
+    ->name('portal.rentals.')
+    ->group(function () {
+        Route::get('/', [PortalRentalController::class, 'index'])->name('index');
+        Route::get('/{rental}', [PortalRentalController::class, 'show'])->name('show');
+        Route::get('/{rental}/export', [PortalRentalController::class, 'export'])->name('export');
+    });
