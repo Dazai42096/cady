@@ -276,3 +276,21 @@ Route::middleware(['auth', 'role:admin'])->prefix('dashboard/security-users')->n
     Route::post('/{user}/activate', [SecurityUserController::class, 'activate'])->name('activate');
     Route::post('/{user}/deactivate', [SecurityUserController::class, 'deactivate'])->name('deactivate');
 });
+
+
+Route::middleware(['auth', 'role:admin,sales'])->prefix('dashboard/rentals')->name('dashboard.rentals.')->group(function () {
+    Route::get('/create', [RentalController::class, 'create'])->name('create');
+    Route::post('/', [RentalController::class, 'store'])->name('store');
+    Route::get('/{rental}/edit', [RentalController::class, 'edit'])->name('edit');
+    Route::put('/{rental}', [RentalController::class, 'update'])->name('update');
+    Route::post('/{rental}/activate', [RentalController::class, 'activate'])->name('activate');
+    Route::post('/{rental}/extend', [RentalController::class, 'extend'])->name('extend');
+    Route::post('/{rental}/complete', [RentalController::class, 'complete'])->name('complete');
+    Route::post('/{rental}/cancel', [RentalController::class, 'cancel'])->name('cancel');
+});
+
+Route::middleware(['auth', 'role:admin,sales,support'])->prefix('dashboard/rentals')->name('dashboard.rentals.')->group(function () {
+    Route::get('/{rental}', [RentalController::class, 'show'])->name('show');
+    Route::post('/{rental}/hour-meter', [RentalController::class, 'updateHourMeter'])->name('hour-meter');
+    Route::get('/{rental}/export', [RentalController::class, 'export'])->name('export');
+});
