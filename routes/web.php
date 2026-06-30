@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\Portal\ServiceReportController as PortalServiceReportController;
+
+use App\Http\Controllers\Dashboard\ServiceReportController;
+
 use App\Http\Controllers\Dashboard\ComplianceController;
 
 use App\Http\Controllers\Dashboard\BackupController;
@@ -341,3 +345,27 @@ Route::middleware(['auth', 'role:admin'])
 Route::middleware(['auth', 'role:admin'])
     ->get('/dashboard/compliance', [ComplianceController::class, 'index'])
     ->name('dashboard.compliance.index');
+
+
+Route::middleware(['auth', 'role:admin,sales,support'])
+    ->prefix('dashboard/service-reports')
+    ->name('dashboard.service-reports.')
+    ->group(function () {
+        Route::get('/', [ServiceReportController::class, 'index'])->name('index');
+        Route::get('/create', [ServiceReportController::class, 'create'])->name('create');
+        Route::post('/', [ServiceReportController::class, 'store'])->name('store');
+        Route::get('/{serviceReport}', [ServiceReportController::class, 'show'])->name('show');
+        Route::get('/{serviceReport}/pdf', [ServiceReportController::class, 'downloadPdf'])->name('pdf');
+        Route::post('/{serviceReport}/submit', [ServiceReportController::class, 'submit'])->name('submit');
+        Route::post('/{serviceReport}/approve', [ServiceReportController::class, 'approve'])->name('approve');
+    });
+
+
+Route::middleware(['auth', 'role:customer'])
+    ->prefix('portal/service-reports')
+    ->name('portal.service-reports.')
+    ->group(function () {
+        Route::get('/', [PortalServiceReportController::class, 'index'])->name('index');
+        Route::get('/{serviceReport}', [PortalServiceReportController::class, 'show'])->name('show');
+        Route::get('/{serviceReport}/pdf', [PortalServiceReportController::class, 'downloadPdf'])->name('pdf');
+    });

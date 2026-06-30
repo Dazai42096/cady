@@ -47,4 +47,8 @@ class Generator extends Model
     {
         return $this->hasMany(Rental::class);
     }
+    public function serviceReports(): HasMany
+    {
+        return $this->hasMany(ServiceReport::class);
+    }
 }

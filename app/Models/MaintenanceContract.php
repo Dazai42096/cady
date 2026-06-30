@@ -74,4 +74,8 @@ class MaintenanceContract extends Model
     {
         return $this->hasMany(MaintenanceVisit::class);
     }
+    public function serviceReports(): HasMany
+    {
+        return $this->hasMany(ServiceReport::class);
+    }
 }

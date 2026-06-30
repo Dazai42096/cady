@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Rental extends Model
@@ -74,5 +75,9 @@ class Rental extends Model
     public function isCancelled(): bool
     {
         return $this->status === 'cancelled';
+    }
+    public function serviceReports(): HasMany
+    {
+        return $this->hasMany(ServiceReport::class);
     }
 }
