@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class WhatsAppMessage extends Model
 {
     protected $table = 'whatsapp_messages';
+    protected $table = 'whatsapp_messages';
     use HasFactory, HasUuids, SoftDeletes;
 
     protected $fillable = [

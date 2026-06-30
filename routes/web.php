@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Dashboard\WhatsAppController;
+
 use App\Http\Controllers\Portal\PortalRentalController;
 
 use App\Http\Controllers\Dashboard\SecurityUserController;
@@ -305,4 +307,17 @@ Route::middleware(['auth', 'role:customer'])
         Route::get('/', [PortalRentalController::class, 'index'])->name('index');
         Route::get('/{rental}', [PortalRentalController::class, 'show'])->name('show');
         Route::get('/{rental}/export', [PortalRentalController::class, 'export'])->name('export');
+    });
+
+
+Route::middleware(['auth', 'role:admin,sales,support'])
+    ->prefix('dashboard/whatsapp-messages')
+    ->name('dashboard.whatsapp.')
+    ->group(function () {
+        Route::get('/', [WhatsAppController::class, 'index'])->name('index');
+        Route::get('/create', [WhatsAppController::class, 'create'])->name('create');
+        Route::post('/', [WhatsAppController::class, 'store'])->name('store');
+        Route::get('/{whatsapp}', [WhatsAppController::class, 'show'])->name('show');
+        Route::post('/{whatsapp}/open', [WhatsAppController::class, 'open'])->name('open');
+        Route::post('/{whatsapp}/mark-sent', [WhatsAppController::class, 'markSent'])->name('mark-sent');
     });
