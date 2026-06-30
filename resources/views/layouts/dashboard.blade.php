@@ -92,6 +92,12 @@
                     <span>💾</span>
                     <span>Backups</span>
                 </a>
+            
+                <a href="{{ route('dashboard.compliance.index') }}"
+                   class="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-semibold transition {{ request()->routeIs('dashboard.compliance.*') ? 'bg-emerald-500 text-white' : 'text-slate-300 hover:bg-slate-800 hover:text-white' }}">
+                    <span>✅</span>
+                    <span>Compliance</span>
+                </a>
             </nav>
 
         <!-- Sidebar Footer Info -->

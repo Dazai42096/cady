@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Dashboard\ComplianceController;
+
 use App\Http\Controllers\Dashboard\BackupController;
 
 use App\Http\Controllers\Dashboard\WhatsAppController;
@@ -334,3 +336,8 @@ Route::middleware(['auth', 'role:admin'])
         Route::get('/{filename}/download', [BackupController::class, 'download'])->name('download');
         Route::delete('/{filename}', [BackupController::class, 'delete'])->name('delete');
     });
+
+
+Route::middleware(['auth', 'role:admin'])
+    ->get('/dashboard/compliance', [ComplianceController::class, 'index'])
+    ->name('dashboard.compliance.index');
