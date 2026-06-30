@@ -17,7 +17,7 @@ return new class extends Migration
             $table->uuid('generator_id')->nullable()->index();
             $table->uuid('rental_id')->nullable()->index();
             $table->uuid('maintenance_contract_id')->nullable()->index();
-            $table->uuid('created_by')->nullable()->index();
+            $table->foreignId('created_by')->nullable()->constrained('users')->nullOnDelete();
 
             $table->string('report_type')->default('maintenance')->index();
             $table->string('status')->default('draft')->index();
@@ -44,7 +44,7 @@ return new class extends Migration
             $table->foreign('generator_id')->references('id')->on('generators')->onDelete('set null');
             $table->foreign('rental_id')->references('id')->on('rentals')->onDelete('set null');
             $table->foreign('maintenance_contract_id')->references('id')->on('maintenance_contracts')->onDelete('set null');
-            $table->foreign('created_by')->references('id')->on('users')->onDelete('set null');
+            
         });
     }
 
