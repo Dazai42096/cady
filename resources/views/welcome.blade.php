@@ -8,7 +8,6 @@
 
         @fonts
 
-        <!-- Styles / Scripts -->
         @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
             @vite(['resources/css/app.css', 'resources/js/app.js'])
         @else
@@ -219,5 +218,6 @@
         @if (Route::has('login'))
             <div class="h-14.5 hidden lg:block"></div>
         @endif
-    </body>
+    <script src="{{ asset('js/cady-i18n.js') }}?v=20260701"></script>
+</body>
 </html>

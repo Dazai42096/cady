@@ -57,5 +57,6 @@
         <h2>{{ $label }}</h2>
         <div class="box">{{ $report->{$field} ?: '-' }}</div>
     @endforeach
+<script src="{{ asset('js/cady-i18n.js') }}?v=20260701"></script>
 </body>
 </html>

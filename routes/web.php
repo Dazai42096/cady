@@ -1,42 +1,321 @@
 <?php
 
+use App\Http\Controllers\Dashboard\GeneratorQuickController;
+
+
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('/dashboard/employees', [EmployeeController::class, 'index'])->name('dashboard.employees.index');
+    Route::get('/dashboard/employees/create', [EmployeeController::class, 'create'])->name('dashboard.employees.create');
+    Route::post('/dashboard/employees', [EmployeeController::class, 'store'])->name('dashboard.employees.store');
+});
+
+Route::middleware(['auth', 'role:admin,sales,support'])->group(function () {
+    Route::get('/dashboard/generators/create', [GeneratorQuickController::class, 'create'])->name('dashboard.generators.create');
+    Route::post('/dashboard/generators', [GeneratorQuickController::class, 'store'])->name('dashboard.generators.store');
+});
+use App\Http\Controllers\Dashboard\EmployeeController;
+
+
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('/dashboard/employees', [EmployeeController::class, 'index'])->name('dashboard.employees.index');
+    Route::get('/dashboard/employees/create', [EmployeeController::class, 'create'])->name('dashboard.employees.create');
+    Route::post('/dashboard/employees', [EmployeeController::class, 'store'])->name('dashboard.employees.store');
+});
+
+Route::middleware(['auth', 'role:admin,sales,support'])->group(function () {
+    Route::get('/dashboard/generators/create', [GeneratorQuickController::class, 'create'])->name('dashboard.generators.create');
+    Route::post('/dashboard/generators', [GeneratorQuickController::class, 'store'])->name('dashboard.generators.store');
+});
 use App\Http\Controllers\LocaleController;
 
+
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('/dashboard/employees', [EmployeeController::class, 'index'])->name('dashboard.employees.index');
+    Route::get('/dashboard/employees/create', [EmployeeController::class, 'create'])->name('dashboard.employees.create');
+    Route::post('/dashboard/employees', [EmployeeController::class, 'store'])->name('dashboard.employees.store');
+});
+
+Route::middleware(['auth', 'role:admin,sales,support'])->group(function () {
+    Route::get('/dashboard/generators/create', [GeneratorQuickController::class, 'create'])->name('dashboard.generators.create');
+    Route::post('/dashboard/generators', [GeneratorQuickController::class, 'store'])->name('dashboard.generators.store');
+});
 use App\Http\Controllers\Portal\ServiceReportController as PortalServiceReportController;
 
+
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('/dashboard/employees', [EmployeeController::class, 'index'])->name('dashboard.employees.index');
+    Route::get('/dashboard/employees/create', [EmployeeController::class, 'create'])->name('dashboard.employees.create');
+    Route::post('/dashboard/employees', [EmployeeController::class, 'store'])->name('dashboard.employees.store');
+});
+
+Route::middleware(['auth', 'role:admin,sales,support'])->group(function () {
+    Route::get('/dashboard/generators/create', [GeneratorQuickController::class, 'create'])->name('dashboard.generators.create');
+    Route::post('/dashboard/generators', [GeneratorQuickController::class, 'store'])->name('dashboard.generators.store');
+});
 use App\Http\Controllers\Dashboard\ServiceReportController;
 
+
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('/dashboard/employees', [EmployeeController::class, 'index'])->name('dashboard.employees.index');
+    Route::get('/dashboard/employees/create', [EmployeeController::class, 'create'])->name('dashboard.employees.create');
+    Route::post('/dashboard/employees', [EmployeeController::class, 'store'])->name('dashboard.employees.store');
+});
+
+Route::middleware(['auth', 'role:admin,sales,support'])->group(function () {
+    Route::get('/dashboard/generators/create', [GeneratorQuickController::class, 'create'])->name('dashboard.generators.create');
+    Route::post('/dashboard/generators', [GeneratorQuickController::class, 'store'])->name('dashboard.generators.store');
+});
 use App\Http\Controllers\Dashboard\ComplianceController;
 
+
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('/dashboard/employees', [EmployeeController::class, 'index'])->name('dashboard.employees.index');
+    Route::get('/dashboard/employees/create', [EmployeeController::class, 'create'])->name('dashboard.employees.create');
+    Route::post('/dashboard/employees', [EmployeeController::class, 'store'])->name('dashboard.employees.store');
+});
+
+Route::middleware(['auth', 'role:admin,sales,support'])->group(function () {
+    Route::get('/dashboard/generators/create', [GeneratorQuickController::class, 'create'])->name('dashboard.generators.create');
+    Route::post('/dashboard/generators', [GeneratorQuickController::class, 'store'])->name('dashboard.generators.store');
+});
 use App\Http\Controllers\Dashboard\BackupController;
 
+
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('/dashboard/employees', [EmployeeController::class, 'index'])->name('dashboard.employees.index');
+    Route::get('/dashboard/employees/create', [EmployeeController::class, 'create'])->name('dashboard.employees.create');
+    Route::post('/dashboard/employees', [EmployeeController::class, 'store'])->name('dashboard.employees.store');
+});
+
+Route::middleware(['auth', 'role:admin,sales,support'])->group(function () {
+    Route::get('/dashboard/generators/create', [GeneratorQuickController::class, 'create'])->name('dashboard.generators.create');
+    Route::post('/dashboard/generators', [GeneratorQuickController::class, 'store'])->name('dashboard.generators.store');
+});
 use App\Http\Controllers\Dashboard\WhatsAppController;
 
+
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('/dashboard/employees', [EmployeeController::class, 'index'])->name('dashboard.employees.index');
+    Route::get('/dashboard/employees/create', [EmployeeController::class, 'create'])->name('dashboard.employees.create');
+    Route::post('/dashboard/employees', [EmployeeController::class, 'store'])->name('dashboard.employees.store');
+});
+
+Route::middleware(['auth', 'role:admin,sales,support'])->group(function () {
+    Route::get('/dashboard/generators/create', [GeneratorQuickController::class, 'create'])->name('dashboard.generators.create');
+    Route::post('/dashboard/generators', [GeneratorQuickController::class, 'store'])->name('dashboard.generators.store');
+});
 use App\Http\Controllers\Portal\PortalRentalController;
 
+
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('/dashboard/employees', [EmployeeController::class, 'index'])->name('dashboard.employees.index');
+    Route::get('/dashboard/employees/create', [EmployeeController::class, 'create'])->name('dashboard.employees.create');
+    Route::post('/dashboard/employees', [EmployeeController::class, 'store'])->name('dashboard.employees.store');
+});
+
+Route::middleware(['auth', 'role:admin,sales,support'])->group(function () {
+    Route::get('/dashboard/generators/create', [GeneratorQuickController::class, 'create'])->name('dashboard.generators.create');
+    Route::post('/dashboard/generators', [GeneratorQuickController::class, 'store'])->name('dashboard.generators.store');
+});
 use App\Http\Controllers\Dashboard\SecurityUserController;
 
+
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('/dashboard/employees', [EmployeeController::class, 'index'])->name('dashboard.employees.index');
+    Route::get('/dashboard/employees/create', [EmployeeController::class, 'create'])->name('dashboard.employees.create');
+    Route::post('/dashboard/employees', [EmployeeController::class, 'store'])->name('dashboard.employees.store');
+});
+
+Route::middleware(['auth', 'role:admin,sales,support'])->group(function () {
+    Route::get('/dashboard/generators/create', [GeneratorQuickController::class, 'create'])->name('dashboard.generators.create');
+    Route::post('/dashboard/generators', [GeneratorQuickController::class, 'store'])->name('dashboard.generators.store');
+});
 use App\Http\Controllers\Auth\TwoFactorController;
 
+
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('/dashboard/employees', [EmployeeController::class, 'index'])->name('dashboard.employees.index');
+    Route::get('/dashboard/employees/create', [EmployeeController::class, 'create'])->name('dashboard.employees.create');
+    Route::post('/dashboard/employees', [EmployeeController::class, 'store'])->name('dashboard.employees.store');
+});
+
+Route::middleware(['auth', 'role:admin,sales,support'])->group(function () {
+    Route::get('/dashboard/generators/create', [GeneratorQuickController::class, 'create'])->name('dashboard.generators.create');
+    Route::post('/dashboard/generators', [GeneratorQuickController::class, 'store'])->name('dashboard.generators.store');
+});
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Auth\ForgotPasswordController;
+
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('/dashboard/employees', [EmployeeController::class, 'index'])->name('dashboard.employees.index');
+    Route::get('/dashboard/employees/create', [EmployeeController::class, 'create'])->name('dashboard.employees.create');
+    Route::post('/dashboard/employees', [EmployeeController::class, 'store'])->name('dashboard.employees.store');
+});
+
+Route::middleware(['auth', 'role:admin,sales,support'])->group(function () {
+    Route::get('/dashboard/generators/create', [GeneratorQuickController::class, 'create'])->name('dashboard.generators.create');
+    Route::post('/dashboard/generators', [GeneratorQuickController::class, 'store'])->name('dashboard.generators.store');
+});
 use App\Http\Controllers\Auth\LoginController;
+
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('/dashboard/employees', [EmployeeController::class, 'index'])->name('dashboard.employees.index');
+    Route::get('/dashboard/employees/create', [EmployeeController::class, 'create'])->name('dashboard.employees.create');
+    Route::post('/dashboard/employees', [EmployeeController::class, 'store'])->name('dashboard.employees.store');
+});
+
+Route::middleware(['auth', 'role:admin,sales,support'])->group(function () {
+    Route::get('/dashboard/generators/create', [GeneratorQuickController::class, 'create'])->name('dashboard.generators.create');
+    Route::post('/dashboard/generators', [GeneratorQuickController::class, 'store'])->name('dashboard.generators.store');
+});
 use App\Http\Controllers\Auth\RegisterController;
+
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('/dashboard/employees', [EmployeeController::class, 'index'])->name('dashboard.employees.index');
+    Route::get('/dashboard/employees/create', [EmployeeController::class, 'create'])->name('dashboard.employees.create');
+    Route::post('/dashboard/employees', [EmployeeController::class, 'store'])->name('dashboard.employees.store');
+});
+
+Route::middleware(['auth', 'role:admin,sales,support'])->group(function () {
+    Route::get('/dashboard/generators/create', [GeneratorQuickController::class, 'create'])->name('dashboard.generators.create');
+    Route::post('/dashboard/generators', [GeneratorQuickController::class, 'store'])->name('dashboard.generators.store');
+});
 use App\Http\Controllers\Auth\ResetPasswordController;
 
+
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('/dashboard/employees', [EmployeeController::class, 'index'])->name('dashboard.employees.index');
+    Route::get('/dashboard/employees/create', [EmployeeController::class, 'create'])->name('dashboard.employees.create');
+    Route::post('/dashboard/employees', [EmployeeController::class, 'store'])->name('dashboard.employees.store');
+});
+
+Route::middleware(['auth', 'role:admin,sales,support'])->group(function () {
+    Route::get('/dashboard/generators/create', [GeneratorQuickController::class, 'create'])->name('dashboard.generators.create');
+    Route::post('/dashboard/generators', [GeneratorQuickController::class, 'store'])->name('dashboard.generators.store');
+});
 use App\Http\Controllers\Dashboard\AuditLogController;
+
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('/dashboard/employees', [EmployeeController::class, 'index'])->name('dashboard.employees.index');
+    Route::get('/dashboard/employees/create', [EmployeeController::class, 'create'])->name('dashboard.employees.create');
+    Route::post('/dashboard/employees', [EmployeeController::class, 'store'])->name('dashboard.employees.store');
+});
+
+Route::middleware(['auth', 'role:admin,sales,support'])->group(function () {
+    Route::get('/dashboard/generators/create', [GeneratorQuickController::class, 'create'])->name('dashboard.generators.create');
+    Route::post('/dashboard/generators', [GeneratorQuickController::class, 'store'])->name('dashboard.generators.store');
+});
 use App\Http\Controllers\Dashboard\ContractController;
+
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('/dashboard/employees', [EmployeeController::class, 'index'])->name('dashboard.employees.index');
+    Route::get('/dashboard/employees/create', [EmployeeController::class, 'create'])->name('dashboard.employees.create');
+    Route::post('/dashboard/employees', [EmployeeController::class, 'store'])->name('dashboard.employees.store');
+});
+
+Route::middleware(['auth', 'role:admin,sales,support'])->group(function () {
+    Route::get('/dashboard/generators/create', [GeneratorQuickController::class, 'create'])->name('dashboard.generators.create');
+    Route::post('/dashboard/generators', [GeneratorQuickController::class, 'store'])->name('dashboard.generators.store');
+});
 use App\Http\Controllers\Dashboard\CustomerController;
+
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('/dashboard/employees', [EmployeeController::class, 'index'])->name('dashboard.employees.index');
+    Route::get('/dashboard/employees/create', [EmployeeController::class, 'create'])->name('dashboard.employees.create');
+    Route::post('/dashboard/employees', [EmployeeController::class, 'store'])->name('dashboard.employees.store');
+});
+
+Route::middleware(['auth', 'role:admin,sales,support'])->group(function () {
+    Route::get('/dashboard/generators/create', [GeneratorQuickController::class, 'create'])->name('dashboard.generators.create');
+    Route::post('/dashboard/generators', [GeneratorQuickController::class, 'store'])->name('dashboard.generators.store');
+});
 use App\Http\Controllers\Dashboard\DashboardController;
+
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('/dashboard/employees', [EmployeeController::class, 'index'])->name('dashboard.employees.index');
+    Route::get('/dashboard/employees/create', [EmployeeController::class, 'create'])->name('dashboard.employees.create');
+    Route::post('/dashboard/employees', [EmployeeController::class, 'store'])->name('dashboard.employees.store');
+});
+
+Route::middleware(['auth', 'role:admin,sales,support'])->group(function () {
+    Route::get('/dashboard/generators/create', [GeneratorQuickController::class, 'create'])->name('dashboard.generators.create');
+    Route::post('/dashboard/generators', [GeneratorQuickController::class, 'store'])->name('dashboard.generators.store');
+});
 use App\Http\Controllers\Dashboard\GeneratorController;
+
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('/dashboard/employees', [EmployeeController::class, 'index'])->name('dashboard.employees.index');
+    Route::get('/dashboard/employees/create', [EmployeeController::class, 'create'])->name('dashboard.employees.create');
+    Route::post('/dashboard/employees', [EmployeeController::class, 'store'])->name('dashboard.employees.store');
+});
+
+Route::middleware(['auth', 'role:admin,sales,support'])->group(function () {
+    Route::get('/dashboard/generators/create', [GeneratorQuickController::class, 'create'])->name('dashboard.generators.create');
+    Route::post('/dashboard/generators', [GeneratorQuickController::class, 'store'])->name('dashboard.generators.store');
+});
 use App\Http\Controllers\Dashboard\QuotationController;
+
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('/dashboard/employees', [EmployeeController::class, 'index'])->name('dashboard.employees.index');
+    Route::get('/dashboard/employees/create', [EmployeeController::class, 'create'])->name('dashboard.employees.create');
+    Route::post('/dashboard/employees', [EmployeeController::class, 'store'])->name('dashboard.employees.store');
+});
+
+Route::middleware(['auth', 'role:admin,sales,support'])->group(function () {
+    Route::get('/dashboard/generators/create', [GeneratorQuickController::class, 'create'])->name('dashboard.generators.create');
+    Route::post('/dashboard/generators', [GeneratorQuickController::class, 'store'])->name('dashboard.generators.store');
+});
 use App\Http\Controllers\Dashboard\RentalController;
+
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('/dashboard/employees', [EmployeeController::class, 'index'])->name('dashboard.employees.index');
+    Route::get('/dashboard/employees/create', [EmployeeController::class, 'create'])->name('dashboard.employees.create');
+    Route::post('/dashboard/employees', [EmployeeController::class, 'store'])->name('dashboard.employees.store');
+});
+
+Route::middleware(['auth', 'role:admin,sales,support'])->group(function () {
+    Route::get('/dashboard/generators/create', [GeneratorQuickController::class, 'create'])->name('dashboard.generators.create');
+    Route::post('/dashboard/generators', [GeneratorQuickController::class, 'store'])->name('dashboard.generators.store');
+});
 use App\Http\Controllers\Dashboard\VisitController;
 
+
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('/dashboard/employees', [EmployeeController::class, 'index'])->name('dashboard.employees.index');
+    Route::get('/dashboard/employees/create', [EmployeeController::class, 'create'])->name('dashboard.employees.create');
+    Route::post('/dashboard/employees', [EmployeeController::class, 'store'])->name('dashboard.employees.store');
+});
+
+Route::middleware(['auth', 'role:admin,sales,support'])->group(function () {
+    Route::get('/dashboard/generators/create', [GeneratorQuickController::class, 'create'])->name('dashboard.generators.create');
+    Route::post('/dashboard/generators', [GeneratorQuickController::class, 'store'])->name('dashboard.generators.store');
+});
 use App\Http\Controllers\Portal\PortalController;
+
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('/dashboard/employees', [EmployeeController::class, 'index'])->name('dashboard.employees.index');
+    Route::get('/dashboard/employees/create', [EmployeeController::class, 'create'])->name('dashboard.employees.create');
+    Route::post('/dashboard/employees', [EmployeeController::class, 'store'])->name('dashboard.employees.store');
+});
+
+Route::middleware(['auth', 'role:admin,sales,support'])->group(function () {
+    Route::get('/dashboard/generators/create', [GeneratorQuickController::class, 'create'])->name('dashboard.generators.create');
+    Route::post('/dashboard/generators', [GeneratorQuickController::class, 'store'])->name('dashboard.generators.store');
+});
 use App\Http\Controllers\Public\PublicController;
 
+
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('/dashboard/employees', [EmployeeController::class, 'index'])->name('dashboard.employees.index');
+    Route::get('/dashboard/employees/create', [EmployeeController::class, 'create'])->name('dashboard.employees.create');
+    Route::post('/dashboard/employees', [EmployeeController::class, 'store'])->name('dashboard.employees.store');
+});
+
+Route::middleware(['auth', 'role:admin,sales,support'])->group(function () {
+    Route::get('/dashboard/generators/create', [GeneratorQuickController::class, 'create'])->name('dashboard.generators.create');
+    Route::post('/dashboard/generators', [GeneratorQuickController::class, 'store'])->name('dashboard.generators.store');
+});
 /*
 |--------------------------------------------------------------------------
 | Public Website Routes

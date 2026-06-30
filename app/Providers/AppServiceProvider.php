@@ -30,16 +30,8 @@ class AppServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
-        App::setLocale(Session::get('locale', config('app.locale')));
-Gate::policy(Customer::class, CustomerPolicy::class);
-        Gate::policy(Generator::class, GeneratorPolicy::class);
-        Gate::policy(Quotation::class, QuotationPolicy::class);
-        Gate::policy(MaintenanceContract::class, ContractPolicy::class);
-        Gate::policy(MaintenanceVisit::class, VisitPolicy::class);
-        Gate::policy(AuditLog::class, AuditLogPolicy::class);
-
-        if ($this->app->environment('production')) {
-            URL::forceScheme('https');
+        if (! app()->runningInConsole() && request()->hasSession()) {
+            App::setLocale(session('locale', 'ar'));
         }
     }
 }

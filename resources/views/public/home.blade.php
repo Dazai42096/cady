@@ -3,7 +3,6 @@
 @section('title', 'كادي للمولدات والصيانة - الصفحة الرئيسية - CADY EST')
 
 @section('content')
-<!-- Hero Section -->
 <section class="bg-gradient-to-br from-[#070f1e] via-[#0b192c] to-[#1e3e62] text-white py-20 px-4">
     <div class="container mx-auto max-w-5xl text-center">
         <span class="bg-[#00d26a]/20 border border-[#00d26a]/40 text-[#00d26a] text-xs px-4 py-1.5 rounded-full font-bold uppercase tracking-wider select-none">حلول الطاقة المتكاملة</span>
@@ -25,7 +24,6 @@
     </div>
 </section>
 
-<!-- Stats Grid Section -->
 <section class="py-12 bg-white border-b border-gray-200">
     <div class="container mx-auto max-w-5xl px-4 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
         <div>
@@ -47,7 +45,6 @@
     </div>
 </section>
 
-<!-- Overview Services Section -->
 <section class="py-20 bg-gray-50">
     <div class="container mx-auto max-w-5xl px-4">
         
@@ -58,7 +55,6 @@
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
             
-            <!-- Service 1 -->
             <div class="bg-white p-8 rounded-2xl border border-gray-200 hover:shadow-xl transition flex flex-col justify-between">
                 <div>
                     <div class="text-4xl mb-4">⚙️</div>
@@ -70,7 +66,6 @@
                 <a href="{{ route('services') }}" class="text-[#00d26a] font-bold text-sm mt-6 hover:underline inline-block">اقرأ المزيد ←</a>
             </div>
 
-            <!-- Service 2 -->
             <div class="bg-white p-8 rounded-2xl border border-gray-200 hover:shadow-xl transition flex flex-col justify-between">
                 <div>
                     <div class="text-4xl mb-4">🔑</div>
@@ -82,7 +77,6 @@
                 <a href="{{ route('services') }}" class="text-[#00d26a] font-bold text-sm mt-6 hover:underline inline-block">اقرأ المزيد ←</a>
             </div>
 
-            <!-- Service 3 -->
             <div class="bg-white p-8 rounded-2xl border border-gray-200 hover:shadow-xl transition flex flex-col justify-between">
                 <div>
                     <div class="text-4xl mb-4">🛠️</div>
@@ -99,7 +93,6 @@
     </div>
 </section>
 
-<!-- Call to Action -->
 <section class="bg-[#0b192c] text-white py-16 px-4">
     <div class="container mx-auto max-w-4xl text-center space-y-6">
         <h2 class="text-2xl md:text-4xl font-bold">هل تبحث عن حلول طاقة مضمونة لشركتك؟</h2>

@@ -3,13 +3,11 @@
 @section('title', 'طلب عرض سعر - كادي للمولدات والصيانة - CADY EST')
 
 @section('content')
-<!-- Page Header Banner -->
 <section class="bg-[#0b192c] text-white py-16 text-center">
     <h1 class="text-3xl md:text-5xl font-extrabold">طلب عرض سعر</h1>
     <p class="text-gray-400 mt-3 text-sm md:text-base">يرجى ملء النموذج وسنتواصل معك خلال 24 ساعة عمل</p>
 </section>
 
-<!-- Quote Request Form Content -->
 <section class="py-20 bg-white">
     <div class="container mx-auto max-w-2xl px-4">
         
@@ -18,7 +16,6 @@
             <form action="{{ route('quote_request.submit') }}" method="POST" class="space-y-6">
                 @csrf
 
-                <!-- Display Errors -->
                 @if($errors->any())
                     <div class="bg-red-50 border-r-4 border-red-500 text-red-800 p-4 rounded-lg text-sm space-y-1">
                         @foreach($errors->all() as $error)
@@ -28,7 +25,6 @@
                 @endif
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <!-- Company Name -->
                     <div>
                         <label for="company_name" class="block text-sm font-bold text-gray-700 mb-1">اسم الشركة أو المؤسسة</label>
                         <input id="company_name" name="company_name" type="text" required value="{{ old('company_name') }}"
@@ -36,7 +32,6 @@
                             placeholder="شركة كادي للتجارة">
                     </div>
 
-                    <!-- Contact Person -->
                     <div>
                         <label for="contact_person" class="block text-sm font-bold text-gray-700 mb-1">الشخص المسؤول (الاسم)</label>
                         <input id="contact_person" name="contact_person" type="text" required value="{{ old('contact_person') }}"
@@ -46,7 +41,6 @@
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <!-- Phone -->
                     <div>
                         <label for="phone" class="block text-sm font-bold text-gray-700 mb-1">رقم الهاتف</label>
                         <input id="phone" name="phone" type="text" required value="{{ old('phone') }}"
@@ -54,7 +48,6 @@
                             placeholder="0790000000">
                     </div>
 
-                    <!-- Email -->
                     <div>
                         <label for="email" class="block text-sm font-bold text-gray-700 mb-1">البريد الإلكتروني</label>
                         <input id="email" name="email" type="email" required value="{{ old('email') }}"
@@ -63,7 +56,6 @@
                     </div>
                 </div>
 
-                <!-- Service Type -->
                 <div>
                     <label for="service_type" class="block text-sm font-bold text-gray-700 mb-1">الخدمة المطلوبة</label>
                     <select id="service_type" name="service_type" required
@@ -77,7 +69,6 @@
                     </select>
                 </div>
 
-                <!-- Message Description -->
                 <div>
                     <label for="message" class="block text-sm font-bold text-gray-700 mb-1">تفاصيل الطلب (الأحمال، مدة الإيجار، إلخ)</label>
                     <textarea id="message" name="message" rows="5" required
@@ -85,7 +76,6 @@
                         placeholder="يرجى كتابة متطلبات المولد والأحمال الكهربائية التقريبية أو الأجهزة التي سيتم تشغيلها..."></textarea>
                 </div>
 
-                <!-- Submit Button -->
                 <div>
                     <button type="submit" class="w-full flex justify-center py-3 px-4 border border-transparent text-sm font-bold rounded-xl text-[#0b192c] bg-[#00d26a] hover:bg-[#00b058] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#00d26a] transition cursor-pointer">
                         إرسال طلب السعر

@@ -3,17 +3,14 @@
 @section('title', 'خدماتنا - كادي للمولدات والصيانة - CADY EST')
 
 @section('content')
-<!-- Page Header Banner -->
 <section class="bg-[#0b192c] text-white py-16 text-center">
     <h1 class="text-3xl md:text-5xl font-extrabold">خدماتنا وحلولنا</h1>
     <p class="text-gray-400 mt-3 text-sm md:text-base">نوفر حلول طاقة كهربائية متكاملة لجميع القطاعات</p>
 </section>
 
-<!-- Detailed Services -->
 <section class="py-20 bg-white">
     <div class="container mx-auto max-w-4xl px-4 space-y-16">
         
-        <!-- Service 1 -->
         <div class="flex flex-col md:flex-row items-center gap-12 border-b border-gray-150 pb-12">
             <div class="md:w-1/3 text-6xl text-center md:text-right">⚙️</div>
             <div class="md:w-2/3 space-y-4">
@@ -24,7 +21,6 @@
             </div>
         </div>
 
-        <!-- Service 2 -->
         <div class="flex flex-col md:flex-row items-center gap-12 border-b border-gray-150 pb-12">
             <div class="md:w-1/3 text-6xl text-center md:text-right">🔑</div>
             <div class="md:w-2/3 space-y-4">
@@ -35,7 +31,6 @@
             </div>
         </div>
 
-        <!-- Service 3 -->
         <div class="flex flex-col md:flex-row items-center gap-12 border-b border-gray-150 pb-12">
             <div class="md:w-1/3 text-6xl text-center md:text-right">🛠️</div>
             <div class="md:w-2/3 space-y-4">
@@ -46,7 +41,6 @@
             </div>
         </div>
 
-        <!-- Service 4 -->
         <div class="flex flex-col md:flex-row items-center gap-12">
             <div class="md:w-1/3 text-6xl text-center md:text-right">🎛️</div>
             <div class="md:w-2/3 space-y-4">

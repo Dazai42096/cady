@@ -5,25 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'كادي للمولدات والصيانة - CADY EST')</title>
     
-    <!-- Alpine.js CDN for interactions -->
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     
-    <!-- Vite Assets -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="bg-gray-50 text-gray-800 antialiased min-h-screen flex flex-col">
 
-    <!-- Header Navbar -->
     <header class="bg-[#0b192c] text-white shadow-md sticky top-0 z-50" x-data="{ mobileMenuOpen: false }">
         <div class="container mx-auto px-4 py-4 flex justify-between items-center">
             
-            <!-- Logo -->
             <a href="{{ route('home') }}" class="flex items-center space-x-2 space-x-reverse">
                 <span class="text-2xl font-bold tracking-wider text-white">كادي <span class="text-[#00d26a]">للمولدات</span></span>
                 <span class="text-xs bg-navy-800 border border-gray-700 text-gray-300 px-2 py-1 rounded">CADY EST</span>
             </a>
 
-            <!-- Desktop Nav Links -->
             <nav class="hidden md:flex items-center space-x-8 space-x-reverse">
                 <a href="{{ route('home') }}" class="hover:text-[#00d26a] transition {{ Request::is('/') ? 'text-[#00d26a]' : '' }}">الرئيسية</a>
                 <a href="{{ route('about') }}" class="hover:text-[#00d26a] transition {{ Request::is('about') ? 'text-[#00d26a]' : '' }}">من نحن</a>
@@ -32,7 +27,6 @@
                 <a href="{{ route('contact') }}" class="hover:text-[#00d26a] transition {{ Request::is('contact') ? 'text-[#00d26a]' : '' }}">اتصل بنا</a>
             </nav>
 
-            <!-- Action Buttons -->
             <div class="hidden md:flex items-center space-x-4 space-x-reverse">
                 @auth
                     @if(Auth::user()->isStaff())
@@ -50,7 +44,6 @@
                 @endauth
             </div>
 
-            <!-- Mobile Hamburger Menu Button -->
             <button class="md:hidden text-white hover:text-[#00d26a] focus:outline-none" @click="mobileMenuOpen = !mobileMenuOpen">
                 <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
@@ -58,7 +51,6 @@
             </button>
         </div>
 
-        <!-- Mobile Menu -->
         <div class="md:hidden bg-[#070f1e] border-t border-gray-800" x-show="mobileMenuOpen" x-transition>
             <div class="px-2 pt-2 pb-4 space-y-1">
                 <a href="{{ route('home') }}" class="block px-3 py-2 rounded-md hover:bg-navy-800 {{ Request::is('/') ? 'text-[#00d26a]' : '' }}">الرئيسية</a>
@@ -86,7 +78,6 @@
         </div>
     </header>
 
-    <!-- Main Content Area -->
     <main class="flex-grow">
         @if(session('success'))
             <div class="container mx-auto px-4 mt-6">
@@ -100,11 +91,9 @@
         @yield('content')
     </main>
 
-    <!-- Footer -->
     <footer class="bg-[#070f1e] text-gray-400 pt-12 pb-6 border-t border-gray-900">
         <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
             
-            <!-- Company Intro -->
             <div>
                 <span class="text-xl font-bold tracking-wider text-white">مؤسسة كادي <span class="text-[#00d26a]">للمولدات</span></span>
                 <p class="mt-4 text-sm leading-relaxed">
@@ -112,7 +101,6 @@
                 </p>
             </div>
 
-            <!-- Quick Links -->
             <div>
                 <h3 class="text-white font-bold text-lg mb-4">روابط سريعة</h3>
                 <ul class="space-y-2 text-sm">
@@ -123,7 +111,6 @@
                 </ul>
             </div>
 
-            <!-- Contacts Info -->
             <div>
                 <h3 class="text-white font-bold text-lg mb-4">معلومات الاتصال</h3>
                 <ul class="space-y-2 text-sm">
@@ -158,5 +145,6 @@
         </div>
     </footer>
 
+<script src="{{ asset('js/cady-i18n.js') }}?v=20260701"></script>
 </body>
 </html>

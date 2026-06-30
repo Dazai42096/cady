@@ -13,11 +13,9 @@
 <form class="mt-6 space-y-4" action="{{ route('password.update') }}" method="POST">
     @csrf
 
-    <!-- Token and Email Hidden -->
     <input type="hidden" name="token" value="{{ $token }}">
     <input type="hidden" name="email" value="{{ $email }}">
 
-    <!-- Password Input -->
     <div>
         <label for="password" class="block text-sm font-semibold text-gray-300 mb-1">كلمة المرور الجديدة</label>
         <input id="password" name="password" type="password" required autocomplete="new-password"
@@ -25,7 +23,6 @@
             placeholder="••••••••">
     </div>
 
-    <!-- Password Confirmation -->
     <div>
         <label for="password_confirmation" class="block text-sm font-semibold text-gray-300 mb-1">تأكيد كلمة المرور الجديدة</label>
         <input id="password_confirmation" name="password_confirmation" type="password" required autocomplete="new-password"
@@ -33,7 +30,6 @@
             placeholder="••••••••">
     </div>
 
-    <!-- Submit Button -->
     <div class="pt-2">
         <button type="submit" class="w-full flex justify-center py-3 px-4 border border-transparent text-sm font-bold rounded-xl text-[#0b192c] bg-[#00d26a] hover:bg-[#00b058] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#00d26a] transition cursor-pointer">
             تحديث كلمة المرور والدخول

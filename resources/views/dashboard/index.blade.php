@@ -4,12 +4,10 @@
 @section('page_title', 'لوحة الإحصائيات العامة')
 
 @section('content')
-<!-- Quick Action Bar -->
 <div class="mb-8">
     <h3 class="text-sm font-bold text-gray-400 mb-3 uppercase tracking-wider">الإجراءات السريعة</h3>
     <div class="flex flex-wrap gap-4">
         
-        <!-- New Customer -->
         @if(Auth::user()->isAdmin() || Auth::user()->isSales())
             <a href="{{ route('dashboard.customers.create') }}" class="bg-[#0b192c] hover:bg-navy-800 text-white font-bold px-4 py-2.5 rounded-xl text-xs flex items-center transition shadow-sm">
                 <span class="ml-2">➕</span> إضافة عميل جديد
@@ -37,7 +35,6 @@
     </div>
 </div>
 
-<!-- Stats Grid -->
 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
     
     <x-stat-card title="العملاء النشطين" :value="$stats['active_customers']" icon="👥" color="green" />
@@ -60,7 +57,6 @@
 
 </div>
 
-<!-- Recent Activities / Audit Logs -->
 <div class="bg-white rounded-2xl border border-gray-200 shadow-sm p-6">
     <div class="flex justify-between items-center mb-6">
         <h3 class="text-lg font-bold text-slate-900">أحدث العمليات وسجل التدقيق الفني</h3>

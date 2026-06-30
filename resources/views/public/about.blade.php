@@ -3,13 +3,11 @@
 @section('title', 'من نحن - كادي للمولدات والصيانة - CADY EST')
 
 @section('content')
-<!-- Page Header Banner -->
 <section class="bg-[#0b192c] text-white py-16 text-center">
     <h1 class="text-3xl md:text-5xl font-extrabold">من نحن</h1>
     <p class="text-gray-400 mt-3 text-sm md:text-base">تاريخ ومستقبل مؤسسة كادي للمولدات وحلول الطاقة</p>
 </section>
 
-<!-- Company Info -->
 <section class="py-20 bg-white">
     <div class="container mx-auto max-w-4xl px-4 flex flex-col md:flex-row items-center gap-12">
         
@@ -34,7 +32,6 @@
     </div>
 </section>
 
-<!-- Mission & Vision -->
 <section class="py-20 bg-gray-50 border-t border-b border-gray-200">
     <div class="container mx-auto max-w-4xl px-4 grid grid-cols-1 md:grid-cols-2 gap-12">
         
