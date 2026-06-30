@@ -19,7 +19,7 @@
         </div>
     @endif
 
-    <form method="POST" action="{{ route('dashboard.employees.store') }}" class="bg-white rounded-2xl border border-slate-200 p-6 space-y-5">
+    <form method="POST" action="/dashboard/employees" class="bg-white rounded-2xl border border-slate-200 p-6 space-y-5">
         @csrf
 
         <div>
