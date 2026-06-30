@@ -11,7 +11,7 @@
         </div>
 
         @if (auth()->user()->hasRole(['admin', 'sales']))
-            <a href="{{ route('dashboard.rentals.create') }}" class="rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-5 py-3">
+            <a href="{{ route('dashboard.rentals.create') }}" style="background:#059669;color:white;padding:12px 20px;border-radius:12px;font-weight:700;text-decoration:none;display:inline-block;">
                 New Rental
             </a>
         @endif
