@@ -3,6 +3,45 @@
 @section('title', 'Compliance Dashboard')
 
 @section('content')
+<style>
+@media print {
+    body {
+        background: white !important;
+    }
+
+    aside,
+    nav,
+    header,
+    .no-print {
+        display: none !important;
+    }
+
+    main,
+    .content,
+    .container {
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    a {
+        text-decoration: none !important;
+        color: #000 !important;
+    }
+
+    .shadow-sm,
+    .shadow,
+    .shadow-lg {
+        box-shadow: none !important;
+    }
+
+    .rounded-2xl,
+    .rounded-xl,
+    .rounded-3xl {
+        border-radius: 8px !important;
+    }
+}
+</style>
 <div class="space-y-6">
     <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         <div>
@@ -10,9 +49,15 @@
             <p class="text-slate-600 mt-1">A quick internal checklist for testing the CADY system modules.</p>
         </div>
 
-        <a href="{{ route('dashboard.index') }}" class="rounded-xl bg-slate-900 text-white font-bold px-5 py-3">
-            Back to Dashboard
-        </a>
+        <div class="flex gap-2 no-print">
+    <button onclick="window.print()" class="rounded-xl bg-emerald-600 text-white font-bold px-5 py-3">
+        Print / Save PDF
+    </button>
+
+    <a href="{{ route('dashboard.index') }}" class="rounded-xl bg-slate-900 text-white font-bold px-5 py-3">
+        Back to Dashboard
+    </a>
+</div>
     </div>
 
     <div class="grid md:grid-cols-4 gap-4">
