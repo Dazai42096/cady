@@ -2,6 +2,9 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Session;
+
 use App\Models\AuditLog;
 use App\Models\Customer;
 use App\Models\Generator;
@@ -27,7 +30,8 @@ class AppServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
-        Gate::policy(Customer::class, CustomerPolicy::class);
+        App::setLocale(Session::get('locale', config('app.locale')));
+Gate::policy(Customer::class, CustomerPolicy::class);
         Gate::policy(Generator::class, GeneratorPolicy::class);
         Gate::policy(Quotation::class, QuotationPolicy::class);
         Gate::policy(MaintenanceContract::class, ContractPolicy::class);

@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\LocaleController;
+
 use App\Http\Controllers\Portal\ServiceReportController as PortalServiceReportController;
 
 use App\Http\Controllers\Dashboard\ServiceReportController;
@@ -369,3 +371,4 @@ Route::middleware(['auth', 'role:customer'])
         Route::get('/{serviceReport}', [PortalServiceReportController::class, 'show'])->name('show');
         Route::get('/{serviceReport}/pdf', [PortalServiceReportController::class, 'downloadPdf'])->name('pdf');
     });
+Route::get('/locale/switch/{locale}', [LocaleController::class, 'switch'])->name('locale.switch');
