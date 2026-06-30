@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Dashboard\BackupController;
+
 use App\Http\Controllers\Dashboard\WhatsAppController;
 
 use App\Http\Controllers\Portal\PortalRentalController;
@@ -320,4 +322,15 @@ Route::middleware(['auth', 'role:admin,sales,support'])
         Route::get('/{whatsapp}', [WhatsAppController::class, 'show'])->name('show');
         Route::post('/{whatsapp}/open', [WhatsAppController::class, 'open'])->name('open');
         Route::post('/{whatsapp}/mark-sent', [WhatsAppController::class, 'markSent'])->name('mark-sent');
+    });
+
+
+Route::middleware(['auth', 'role:admin'])
+    ->prefix('dashboard/backups')
+    ->name('dashboard.backups.')
+    ->group(function () {
+        Route::get('/', [BackupController::class, 'index'])->name('index');
+        Route::post('/generate', [BackupController::class, 'generate'])->name('generate');
+        Route::get('/{filename}/download', [BackupController::class, 'download'])->name('download');
+        Route::delete('/{filename}', [BackupController::class, 'delete'])->name('delete');
     });

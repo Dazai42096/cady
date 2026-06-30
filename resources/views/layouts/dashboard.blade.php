@@ -86,7 +86,13 @@
                 </a>
             @endif
 
-        </nav>
+        
+                <a href="{{ route('dashboard.backups.index') }}"
+                   class="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-semibold transition {{ request()->routeIs('dashboard.backups.*') ? 'bg-emerald-500 text-white' : 'text-slate-300 hover:bg-slate-800 hover:text-white' }}">
+                    <span>💾</span>
+                    <span>Backups</span>
+                </a>
+            </nav>
 
         <!-- Sidebar Footer Info -->
         <div class="p-4 border-t border-gray-800 bg-[#070f1e] text-center text-xs text-gray-500">
