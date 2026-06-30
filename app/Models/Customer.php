@@ -65,4 +65,8 @@ class Customer extends Model
     {
         return $this->hasMany(MaintenanceContract::class);
     }
+    public function rentals(): HasMany
+    {
+        return $this->hasMany(Rental::class);
+    }
 }
